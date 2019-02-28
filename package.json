@@ -6,7 +6,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
+    "test": "rm -rf coverage && nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
     "docs": "rm -rf docs && typedoc --out ./docs/ ./src --theme markdown --readme none"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "jasmine": "^3.3.1",
     "jasmine-ts": "^0.3.0",
     "nyc": "^13.3.0",
+    "source-map-support": "^0.5.10",
     "ts-node": "^8.0.2",
     "typedoc": "^0.14.2",
     "typedoc-plugin-markdown": "^1.1.27",
@@ -38,18 +39,15 @@
       ".ts"
     ],
     "exclude": [
-      "coverage/**",
-      "dist/**"
+      "./coverage/**",
+      "./dist/**",
+      "./test/**.spec.ts",
+      "./src/index.ts"
     ],
     "reporter": [
       "text-summary",
       "html"
     ],
-    "all": true,
-    "check-coverage": true,
-    "statements": 100,
-    "branches": 100,
-    "functions": 100,
-    "lines": 100
+    "all": true
   }
 }
