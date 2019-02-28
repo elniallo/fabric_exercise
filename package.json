@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
-    "docs": "typedoc --out ./docs/ ./src"
+    "docs": "typedoc --out ./docs/ ./src --theme markdown"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "nyc": "^13.3.0",
     "ts-node": "^8.0.2",
     "typedoc": "^0.14.2",
+    "typedoc-plugin-markdown": "^1.1.27",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
