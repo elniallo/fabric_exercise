@@ -1,0 +1,29 @@
+{
+  "name": "fabric_exercise",
+  "version": "1.0.0",
+  "description": "Fabric Chaincode for Blockchain Donations",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elniallo/fabric_exercise.git"
+  },
+  "author": "Niall Moore <niallmoore22@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elniallo/fabric_exercise/issues"
+  },
+  "homepage": "https://github.com/elniallo/fabric_exercise#readme",
+  "devDependencies": {
+    "@types/jasmine": "^3.3.9",
+    "jasmine": "^3.3.1",
+    "jasmine-ts": "^0.3.0",
+    "nyc": "^13.3.0",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333"
+  }
+}
