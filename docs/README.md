@@ -9,6 +9,7 @@
 * ["addProject"](modules/_addproject_.md)
 * ["donation"](modules/_donation_.md)
 * ["index"](modules/_index_.md)
+* ["project"](modules/_project_.md)
 
 ---
 

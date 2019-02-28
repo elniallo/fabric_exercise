@@ -4,5 +4,9 @@
 
 ## Index
 
+### Classes
+
+* [Donation](../classes/_donation_.donation.md)
+
 ---
 

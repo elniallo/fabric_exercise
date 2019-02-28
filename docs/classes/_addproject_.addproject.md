@@ -2,7 +2,7 @@
 
 # Class: AddProject
 
-this is a test of the docs
+Adds a project to the ledger to allow for future donations
 
 ## Hierarchy
 

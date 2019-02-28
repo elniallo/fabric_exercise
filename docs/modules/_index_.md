@@ -18,7 +18,7 @@
 
 **● contracts**: *`any`[]* =  [AddDonation,AddProject]
 
-*Defined in [index.ts:5](https://github.com/elniallo/fabric_exercise/blob/1b7fe59/src/index.ts#L5)*
+*Defined in [index.ts:5](https://github.com/elniallo/fabric_exercise/blob/5b63bf2/src/index.ts#L5)*
 
 ___
 

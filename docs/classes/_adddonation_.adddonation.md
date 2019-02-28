@@ -2,6 +2,8 @@
 
 # Class: AddDonation
 
+Adds a donation to a specified project
+
 ## Hierarchy
 
  `Contract`
