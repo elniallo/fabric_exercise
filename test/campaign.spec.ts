@@ -1,8 +1,8 @@
 import { } from "jasmine"
-import {Project} from "../src/project"
+import {Campaign} from "../src/campaign"
 describe("Project",()=>{
     it("Should assign to default values on construction",()=>{
-        let project = new Project("testproject")
+        let project = new Campaign("testproject")
         expect(project.projectName).toEqual("testproject")
         expect(project.donations).toBeDefined()
         expect(project.donations.length).toEqual(0)
