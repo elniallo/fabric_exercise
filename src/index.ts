@@ -1,5 +1,5 @@
-import {AddDonation} from './addDonation'
-import {ManageCampaign} from './manageCampaign'
-export {AddDonation,ManageCampaign}
 
-export const contracts: any[] = [AddDonation,ManageCampaign]
+import {ManageCampaign} from './manageCampaign'
+export {ManageCampaign}
+
+export const contracts: any[] = [ManageCampaign]
