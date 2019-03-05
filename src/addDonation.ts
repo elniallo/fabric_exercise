@@ -1,6 +1,6 @@
 import { Context,Contract } from "fabric-contract-api";
 import {Donation} from "./donation"
-import {Campaign,DonationType} from "./campaign"
+import {Campaign,CampaignStatus} from "./campaign"
 /**  Adds a project to the ledger to allow for future donations
  */
 export class AddDonation extends Contract {
@@ -24,24 +24,40 @@ export class AddDonation extends Contract {
         }
         else {
             let campaign: Campaign = JSON.parse(campaign_buffer.toString())
-            campaign.closeCampaign()
+            campaign.status = CampaignStatus.CLOSED
             return ctx.stub.putState(campaignName,Buffer.from(JSON.stringify(campaign)))
         } 
     }
 
-    public async addDonation(ctx:Context,donationType:string,name:string,donorName:string,amount:number,timestamp:number): Promise<any> {
+    public async addDonation(ctx:Context,donationType:string,name:string,donorName:string,amount:string,timestamp:string): Promise<any> {
         let campaign_buf = await ctx.stub.getState(name)
         if (campaign_buf === undefined || campaign_buf.length === 0) {
             throw new Error("Campaign not found")
         } else {
             let campaign: Campaign = JSON.parse(campaign_buf.toString())
-            let dtype:DonationType = DonationType[donationType]
-            if (dtype === undefined){
-                throw new Error("Invalid donation type")
-            }
-            let donation = new Donation(dtype,amount,name,donorName,timestamp)
-            campaign.processDonation(donation)
+            let donation = new Donation(donationType,Number(amount),name,donorName,Number(timestamp))
+            if (campaign.status === CampaignStatus.OPEN) {
+            this.updateBalance(donation.donationType,donation.donationAmount,campaign)
+            campaign.donations.push(donation)    
             return ctx.stub.putState(campaign.projectName,Buffer.from(JSON.stringify(campaign)))
+            } else {throw new Error("Campaign is closed")}
+            
+        }
+    }
+
+    private updateBalance(transactionType: string,transactionAmount:number, campaign:Campaign) {
+        switch(transactionType) {
+            case "EUR": {campaign.totals.eur +=transactionAmount
+            break}
+            case "USD": {campaign.totals.usd +=transactionAmount
+                break}
+            case "GBP": {campaign.totals.gbp +=transactionAmount
+                break}
+            case "BTC": {campaign.totals.btc +=transactionAmount
+            break}
+            case "ETH": {campaign.totals.eth +=transactionAmount
+            break}
+            default: throw new Error(`Donation type not supported: ${transactionType}`)
         }
     }
 

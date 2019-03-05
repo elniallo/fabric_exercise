@@ -1,14 +1,7 @@
 import { Donation } from "./donation";
 /** Setting a predefined list of donation types available for easier managing */
-export enum DonationType {
-    EUR = "EUR",
-    USD = "USD",
-    GBP = "GBP",
-    BTC = "BTC",
-    ETH = "ETH",
-}
 
-enum CampaignStatus {
+export enum CampaignStatus {
     CLOSED = 0,
     OPEN = 1
 }
@@ -31,27 +24,4 @@ export class Campaign {
         this.status = CampaignStatus.OPEN
     }
 
-    public closeCampaign() {
-        this.status = CampaignStatus.CLOSED
-    }
-
-    private updateBalance(transactionType: DonationType,transactionAmount:number) {
-        switch(transactionType) {
-            case "EUR": this.totals.eur +=transactionAmount
-            case "USD": this.totals.usd +=transactionAmount
-            case "GBP": this.totals.gbp +=transactionAmount
-            case "BTC": this.totals.btc +=transactionAmount
-            case "ETH": this.totals.eth +=transactionAmount
-            default: throw new Error("Donation type not supported")
-        }
-    }
-
-    public processDonation(donation:Donation):boolean{
-        if (this.status === CampaignStatus.CLOSED) {
-            return false
-        }
-        this.updateBalance(donation.donationType,donation.donationAmount);
-        this.donations.push(donation)
-        return true
-    }
 }
