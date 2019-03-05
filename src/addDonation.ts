@@ -61,5 +61,9 @@ export class AddDonation extends Contract {
         }
     }
 
+    public async retrieveCampaign(ctx:Context,name:string) {
+        return ctx.stub.getState(name)
+    }
+
 
 }
