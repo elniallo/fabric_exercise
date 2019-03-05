@@ -3,7 +3,7 @@ import {Donation} from "./donation"
 import {Campaign,DonationType} from "./campaign"
 /**  Adds a project to the ledger to allow for future donations
  */
-export class ManageCampaign extends Contract {
+export class AddDonation extends Contract {
     public async createCampaign(ctx:Context,campaignName:string): Promise<any> {
         // check if campaign exists
         let verification = await ctx.stub.getState(campaignName)
