@@ -45,6 +45,16 @@ export class AddDonation extends Contract {
         }
     }
 
+    public async retrieveCampaign(ctx:Context,name:string) {
+        let campaign_buf = await ctx.stub.getState(name)
+        if (campaign_buf === undefined || campaign_buf.length === 0) {
+            throw new Error("Campaign not found")
+        } else {
+            let campaign: Campaign = JSON.parse(campaign_buf.toString())
+            return JSON.stringify(campaign)
+    }
+}
+
     private updateBalance(transactionType: string,transactionAmount:number, campaign:Campaign) {
         switch(transactionType) {
             case "EUR": {campaign.totals.eur +=transactionAmount
@@ -59,10 +69,6 @@ export class AddDonation extends Contract {
             break}
             default: throw new Error(`Donation type not supported: ${transactionType}`)
         }
-    }
-
-    public async retrieveCampaign(ctx:Context,name:string) {
-        return ctx.stub.getState(name)
     }
 
 
